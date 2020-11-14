@@ -31,7 +31,13 @@ public class UsuarioService {
 	public Usuario insert(Usuario obj) {
 		return repo.insert(obj);
 	}
+	
+	public void delete(String id) {
+		findById(id); // já trata as exceções especificadas no findById
+		repo.deleteById(id);
+	}
 
+	//convert o UsuarioDTO  em usurio do banco 
 	public Usuario fromDTO(UsuarioDTO objDto) {
 		return new Usuario(objDto.getId(), objDto.getName(), objDto.getEmail());
 	}
