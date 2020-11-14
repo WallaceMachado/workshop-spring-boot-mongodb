@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wallacemachado.workshopmongo.DTO.UsuarioDTO;
 import com.wallacemachado.workshopmongo.Repositories.UsuarioRepository;
 import com.wallacemachado.workshopmongo.domain.Usuario;
 import com.wallacemachado.workshopmongo.services.exception.ObjetoNaoEncontradoException;
@@ -26,4 +27,12 @@ public class UsuarioService {
 		Optional<Usuario> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjetoNaoEncontradoException("Objeto não encontrado"));
 		}
+	
+	public Usuario insert(Usuario obj) {
+		return repo.insert(obj);
+	}
+
+	public Usuario fromDTO(UsuarioDTO objDto) {
+		return new Usuario(objDto.getId(), objDto.getName(), objDto.getEmail());
+	}
 }
