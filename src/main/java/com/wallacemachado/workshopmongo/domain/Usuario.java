@@ -2,9 +2,14 @@ package com.wallacemachado.workshopmongo.domain;
 
 import java.io.Serializable;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="usuario") // informa que essa entidade está representada pela copleção "usuario" no bancoMongodb
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
 	private String id;
 	private String name;
 	private String email;
