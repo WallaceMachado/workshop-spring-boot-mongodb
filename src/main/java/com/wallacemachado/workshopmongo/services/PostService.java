@@ -1,5 +1,6 @@
 package com.wallacemachado.workshopmongo.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +25,11 @@ public class PostService {
 	public List<Post> findByTitulo(String text) {
 		
 		return repo.buscarPeloTitulo(text);
+	}
+	
+	public List<Post> fullSearch(String text, Date minDate, Date maxDate) {
+		maxDate = new Date(maxDate.getTime() + 24 * 60 * 60 * 1000); // menor que as 24 horas do dia seguinte
+		return repo.fullSearch(text, minDate, maxDate);
 	}
 	
 }
